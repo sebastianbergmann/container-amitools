@@ -21,7 +21,6 @@ RUN apt-get update && \
     cd / && \
     rm -rf /root/amitools && \
     apt-get purge -y \
-        git \
-        python-pip && \
+        git && \
     apt-get -y autoremove
 
