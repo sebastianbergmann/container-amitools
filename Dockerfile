@@ -9,12 +9,13 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     pip install cython && \
 
-# Clone amitools.git repository
+# Clone amitools.git repository (at last known good revision)
     cd /root && \
     git clone https://github.com/cnvogelg/amitools.git && \
+    cd /root/amitools && \
+    git checkout -qf 5a7e89aed31ec76e96534a5a52ab653d077e2f98 && \
 
 # Build amitools
-    cd /root/amitools && \
     python setup.py install && \
 
 # Cleanup
