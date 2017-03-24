@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="docker-amitools" default="build">
+    <target name="build">
+        <exec executable="docker" taskname="docker">
+            <arg value="build"/>
+            <arg value="--tag"/>
+            <arg value="sebastianbergmann/amitools:latest"/>
+            <arg path="${basedir}"/>
+        </exec>
+    </target>
+</project>
+
