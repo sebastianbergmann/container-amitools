@@ -1,5 +1,4 @@
-# Ubuntu 17.04 ("Zesty Zapus") 64-bit
-FROM ubuntu:17.04
+FROM ubuntu:17.10
 
 # Update base system and install build dependencies
 RUN apt-get update && \
