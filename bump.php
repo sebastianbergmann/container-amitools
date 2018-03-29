@@ -1,9 +1,6 @@
 #!/usr/bin/env php
 <?php
-$buffer = file_get_contents('https://github.com/cnvogelg/amitools');
-$prefix = '<a class="commit-tease-sha" href="/cnvogelg/amitools/commit/';
-$sha1   = substr($buffer, strpos($buffer, $prefix) + strlen($prefix), 40);
-
+$sha1   = trim(`git ls-remote https://github.com/cnvogelg/amitools.git | grep HEAD | awk '{ print $1}'`);
 $buffer = '';
 $prefix = '    git checkout -qf ';
 
