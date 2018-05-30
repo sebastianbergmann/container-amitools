@@ -9,7 +9,7 @@ RUN apt-get update && \
     cd /root && \
     git clone https://github.com/cnvogelg/amitools.git && \
     cd /root/amitools && \
-    git checkout -qf 586d98c943ded24e6e9c533d378bad744fe1cbea && \
+    git checkout -qf 81548ab9600425e2af140760a5768a2f800733e7 && \
     python setup.py install && \
     cd / && \
     rm -rf /root/amitools && \
