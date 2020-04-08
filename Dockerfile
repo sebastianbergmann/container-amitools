@@ -11,7 +11,7 @@ RUN apt-get update && \
     cd /root && \
     git clone https://github.com/cnvogelg/amitools.git && \
     cd /root/amitools && \
-    git checkout -qf 25346428fcf533ae221f21db37794e5fbbc99f79 && \
+    git checkout -qf 34ade1235e141ff0f3429a5cd11bd03030ed90f8 && \
     python3 setup.py install && \
     cd / && \
     rm -rf /root/amitools && \
