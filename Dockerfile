@@ -1,6 +1,7 @@
 FROM ubuntu:20.10
 
 RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive \
     apt-get install -y \
         git \
         python3 \
