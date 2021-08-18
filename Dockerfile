@@ -10,9 +10,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     pip3 install cython && \
     cd /root && \
-    git clone https://github.com/cnvogelg/amitools.git && \
+    git clone --depth 1 https://github.com/cnvogelg/amitools.git && \
     cd /root/amitools && \
-    git checkout -qf c19d09f9748b2698a4b9e1e7beefb1f3ef3a0a51 && \
     python3 setup.py install && \
     cd / && \
     rm -rf /root/amitools && \

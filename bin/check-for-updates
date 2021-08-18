@@ -1,0 +1,73 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+$repositories = [
+    'cnvogelg/amitools' => 'master',
+];
+
+foreach ($repositories as $repository => $branch) {
+    printf(
+        'Checking %-26s ',
+        $repository . ' ...'
+    );
+
+    $file    = __DIR__ . '/.revisions/' . $repository;
+    $old     = trim(file_get_contents($file));
+    $commits = fetch_commits($repository, $branch);
+    $new     = $commits['0']['sha'];
+
+    if ($old === $new) {
+        print 'not updated' . PHP_EOL;
+
+        continue;
+    }
+
+    file_put_contents($file, $new);
+
+    $numberOfCommitsSinceOld = 0;
+    $updatedPrinted          = false;
+
+    foreach ($commits as $commit) {
+        $numberOfCommitsSinceOld++;
+
+        if ($old === $commit['sha']) {
+            printf(
+                'updated (%d new commits)%s',
+                $numberOfCommitsSinceOld,
+                PHP_EOL
+            );
+
+            $updatedPrinted = true;
+
+            break;
+        }
+    }
+
+    if (!$updatedPrinted) {
+        print 'updated' . PHP_EOL;
+    }
+}
+
+function fetch_commits(string $repository, string $branch): array
+{
+    $options = [
+        'http' => [
+            'user_agent' => 'PHP ' . PHP_VERSION
+        ]
+    ];
+
+    $context = stream_context_create($options);
+
+    return json_decode(
+        file_get_contents(
+            sprintf(
+                'https://api.github.com/repos/%s/commits?sha=%s',
+                $repository,
+                $branch
+            ),
+            false,
+            $context
+        ),
+        true
+    );
+}
+
