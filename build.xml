@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="docker-amitools" default="build">
-    <!-- Set this to "docker" if you have/want to use Docker instead of Podman -->
-    <property name="docker-command" value="podman"/>
-
     <target name="build">
-        <exec executable="${docker-command}" taskname="image-build">
+        <exec executable="podman" taskname="image-build">
             <arg value="build"/>
-            <arg value="--ulimit"/>
-            <arg value="nofile=1024"/>
             <arg value="--tag"/>
             <arg value="sebastianbergmann/amitools:latest"/>
             <arg path="${basedir}"/>
