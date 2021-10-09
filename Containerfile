@@ -1,10 +1,11 @@
-FROM ubuntu:21.10
+FROM fedora-minimal:35
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive \
-    apt-get install -y \
+RUN microdnf update -y && \
+    microdnf install -y \
+        gcc \
         git \
         python3 \
+        python3-devel \
         python3-setuptools \
         python3-pip && \
     rm -rf /var/lib/apt/lists/* && \
@@ -15,7 +16,5 @@ RUN apt-get update && \
     python3 setup.py install && \
     cd / && \
     rm -rf /root/amitools && \
-    apt-get purge -y \
-        git && \
-    apt-get -y autoremove
+    microdnf clean all
 
