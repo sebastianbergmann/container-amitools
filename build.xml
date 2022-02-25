@@ -3,6 +3,8 @@
     <target name="build">
         <exec executable="podman" taskname="image-build">
             <arg value="build"/>
+            <arg value="--pull"/>
+            <arg value="--no-cache"/>
             <arg value="--tag"/>
             <arg value="sebastianbergmann/amitools:latest"/>
             <arg path="${basedir}"/>
