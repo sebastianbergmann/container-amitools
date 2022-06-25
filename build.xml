@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="docker-amitools" default="build">
+<project name="container-amitools" default="build">
     <target name="build">
-        <exec executable="podman" taskname="image-build">
+        <exec executable="buildah" taskname="image-build">
             <arg value="build"/>
-            <arg value="--pull"/>
             <arg value="--no-cache"/>
+            <arg value="--squash"/>
             <arg value="--tag"/>
-            <arg value="sebastianbergmann/amitools:latest"/>
-            <arg path="${basedir}"/>
+            <arg value="sebastianbergmann/amitools"/>
+            <arg path="${basedir}/Containerfile"/>
         </exec>
     </target>
 </project>
-
