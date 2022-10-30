@@ -1,4 +1,4 @@
-FROM fedora-minimal:36
+FROM fedora-minimal:37
 
 RUN microdnf update -y && \
     microdnf install -y \
